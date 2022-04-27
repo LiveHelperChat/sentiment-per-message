@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    image: remdex/livehelperchat-sentiment-abstract:latest
+    build: ./Dockerfiles/deep
+    ports:
+      - "5058:5000"
+    volumes:
+      - ./deep:/root/.deeppavlov
+    networks:
+      - code-network
+    restart: always
+networks:
+  code-network:
+    driver: bridge
