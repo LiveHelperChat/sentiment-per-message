@@ -2,7 +2,7 @@
 
 Sentiment analysis docker image for simplified setup. This docker image is used for sentiment analysis per message.
 
-* https://doc.livehelperchat.com/docs/bot/sentiment-analysis-per-message
+> https://doc.livehelperchat.com/docs/bot/sentiment-analysis-per-message
 
 # Install
 
@@ -32,7 +32,7 @@ Testing
 
 ```shell
 curl -X 'POST' \
-  'http://loocalhost:5058/model' \
+  'http://127.0.0.1:5058/model' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -41,3 +41,7 @@ curl -X 'POST' \
   ]
 }'
 ```
+
+You cal also point your browser to test directly
+
+> http://127.0.0.1:5058/docs
