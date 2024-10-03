@@ -11,7 +11,7 @@ Pull images
 ```shell
 git clone https://github.com/LiveHelperChat/sentiment-per-message && cd sentiment-per-message
 docker-compose -f docker-compose.yml pull
-wget https://livehelperchat.com/var/deep_sentence.tgz
+wget https://livehelperchat.com/var/deep_sentence_v2.tgz
 tar zxfv deep_sentence.tgz
 rm -f deep_sentence.tgz
 ```
@@ -26,6 +26,14 @@ Run as a service
 
 ```
 docker-compose -f docker-compose.yml up -d
+```
+
+Build
+
+```shell
+docker-compose -f docker-compose.yml build
+# OR
+docker-compose -f docker-compose.yml --no-cache
 ```
 
 Testing

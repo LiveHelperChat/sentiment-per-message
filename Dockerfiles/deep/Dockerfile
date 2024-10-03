@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.7-slim-stretch
+FROM python:3.9-slim-bullseye as intermediate
 
-ARG COMMIT=master
+ARG COMMIT=aff27489a3c87644eeb8f6009e4a824e83c66c05
 
 EXPOSE 5000
 
@@ -44,16 +44,14 @@ RUN git clone https://github.com/deepmipt/DeepPavlov.git && \
     python -c 'import deeppavlov.models' && \
     rm -rf /root/.cache
 
-RUN pip install email-validator
+
 
 RUN mkdir /base/config
 
 COPY config/sentiment_sst_conv_bert.json /base/config/sentiment_sst_conv_bert.json
-COPY config/requirements.txt /base/requirements.txt
-COPY config/bert_float_classifier.py /base/config/bert_float_classifier.py
-COPY config/bert_float_classifier.py /base/bert_float_classifier.py
-
 RUN mkdir -p /root/.deeppavlov
 
 RUN python -m deeppavlov install /base/config/sentiment_sst_conv_bert.json
-CMD python -m deeppavlov riseapi /base/config/sentiment_sst_conv_bert.json
+
+COPY config/sentiment_sst_conv_bert_run.json /base/config/sentiment_sst_conv_bert_run.json
+CMD python -m deeppavlov riseapi /base/config/sentiment_sst_conv_bert_run.json
